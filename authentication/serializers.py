@@ -1,11 +1,17 @@
-from djoser.serializers import UserCreateSerializer
+from djoser.serializers import UserCreatePasswordRetypeSerializer
 
 from .models import User 
 from rest_framework import serializers
 
-class UserCreateSerializer(UserCreateSerializer):
-    class Meta(UserCreateSerializer.Meta):
+class UserCreateSerializer(UserCreatePasswordRetypeSerializer):
+    class Meta(UserCreatePasswordRetypeSerializer.Meta):
         model = User
-        fields = ['username','email','full_name','address','phone'] 
-        extra_kwargs = {'password': {'write_only': True}}
+        fields = ['username','full_name','password'] 
+        read_only_fields =('date_joined',)
+        
+        extra_kwargs = {
+            'password': {'write_only': True}
+            }
         depth = 1
+   
+ 

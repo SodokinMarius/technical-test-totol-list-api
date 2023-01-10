@@ -42,12 +42,12 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     username = models.CharField(verbose_name="Username",max_length=250,validators=[usernameValidator()])
-    password = models.CharField(verbose_name="Password",validators= [passwordValidator()],max_length=50)
-    full_name = models.CharField(verbose_name="Complete Name",max_length=250)
+    full_name = models.CharField(verbose_name="Complete Name",max_length=250,null=True)
     profile_photo = models.ImageField(upload_to="users",verbose_name="Photo de profil",null=True)
     is_valid = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_verified =  models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
     is_staff =   models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
