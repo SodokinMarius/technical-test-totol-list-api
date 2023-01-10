@@ -40,4 +40,10 @@ urlpatterns = [
 #                   AUTHENTICATION ROUTER             #
 #-----------------------------------------------------#
     path('auth/', include('authentication.urls')),
+    
+    
+#-----------------------------------------------------#
+#                  TODO              ROUTER           #
+#-----------------------------------------------------#
+    path('todo-list/', include('todoListApp.urls')),
 ]

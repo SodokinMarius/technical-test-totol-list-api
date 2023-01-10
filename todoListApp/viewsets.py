@@ -53,7 +53,7 @@ class TaskViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = Task.objects.filter(user=self.request.user)
 
-        if self.action == 'get_recent_plannings':
+        if self.action == 'get_recent_tasks':
              queryset = queryset.order_by("-created_at")[:20]
 
         return queryset
