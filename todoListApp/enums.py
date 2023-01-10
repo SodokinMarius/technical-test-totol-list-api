@@ -20,6 +20,6 @@ class ProgressChoiceEnum(BaseEnum):
     InProgress = "In Progress"
     Cancelled = "Cancelled"
     Completed = "Completed"
-    Delayed      = "Delayed"
+    Delayed   = "Delayed"
     
    

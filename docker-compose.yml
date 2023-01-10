@@ -1,0 +1,26 @@
+version: '3.3'
+services:
+  todo:
+    build: .   
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./:/usr/src/todoListApi/  #./scheminApp | : to manage  if  docker-compose is in other folder
+    ports:
+      - 8009:8000
+    env_file:
+      - ./.env.dev  #renseigner le chemin du .env.dev
+     
+    #Adding new services for postgres configuration
+    depends_on:
+      - todo-db
+  todo-db:   #<--- nom du service
+    image: postgres:14-alpine
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=todo
+      - POSTGRES_PASSWORD=todo
+      - POSTGRES_DB=todo_dev
+volumes:
+  postgres_data:
