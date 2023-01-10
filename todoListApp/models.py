@@ -26,14 +26,17 @@ class Task(SafeDeleteModel):
     def save(self, *args, **kwargs):
         current_time = datetime.datetime.now()
         if self.is_cancelled:
-            self.progress_status = ProgressChoiceEnum.Cancelled
+            self.progress_status = ProgressChoiceEnum.Cancelled.value
         elif current_time > self.date_end:
             if current_time > self.date_end:
-                self.progress_status = ProgressChoiceEnum.Delayed
+                self.progress_status = ProgressChoiceEnum.Delayed.value
             else:
-                self.progress_status = ProgressChoiceEnum.Completed
+                self.progress_status = ProgressChoiceEnum.Completed.value
         elif self.date_start <= current_time <= self.date_end:
-            self.progress_status = ProgressChoiceEnum.InProgress
+            self.progress_status = ProgressChoiceEnum.InProgress.value
         else:
-            self.progress_status = ProgressChoiceEnum.Pending
+            self.progress_status = ProgressChoiceEnum.Pending.value
         super(Task, self).save(*args, **kwargs)
+        
+    def __str__(self) :
+        return f'{self.title} | {self.progress_status}'

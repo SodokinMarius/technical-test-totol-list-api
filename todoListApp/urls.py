@@ -6,7 +6,7 @@ from .viewsets import *
 
 router = routers.SimpleRouter()
 
-router.register('tasks',TaskViewSet)
+router.register('tasks',TaskViewSet,basename='tasks')
 
 
 urlpatterns = router.urls  

@@ -40,8 +40,8 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user 
 
-class User(AbstractBaseUser):
-    username = models.CharField(verbose_name="Username",max_length=250,validators=[usernameValidator()])
+class User(AbstractBaseUser,PermissionsMixin):
+    username = models.CharField(verbose_name="Username",max_length=250,validators=[usernameValidator()],unique=True)
     full_name = models.CharField(verbose_name="Complete Name",max_length=250,null=True)
     profile_photo = models.ImageField(upload_to="users",verbose_name="Photo de profil",null=True)
     is_valid = models.BooleanField(default=True)
@@ -49,6 +49,7 @@ class User(AbstractBaseUser):
     is_verified =  models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
     is_staff =   models.BooleanField(default=False)
+    is_superuser =  models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     objects = UserManager() 

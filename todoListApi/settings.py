@@ -44,8 +44,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'authentication',
+    'todoListApp',
     'djoser',
-    'drf_yasg',
+    'drf_yasg',    
 ]
 
 MIDDLEWARE = [
@@ -148,7 +149,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+AUTH_USER_MODEL  = "authentication.User"
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
