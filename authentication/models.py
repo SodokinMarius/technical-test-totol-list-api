@@ -41,8 +41,8 @@ class UserManager(BaseUserManager):
         return user 
 
 class User(AbstractBaseUser):
-    username = models.CharField(verbose_name="Username",max_length=250,validators=usernameValidator())
-    password = models.CharField(verbose_name="Password",validators=passwordValidator())
+    username = models.CharField(verbose_name="Username",max_length=250,validators=[usernameValidator()])
+    password = models.CharField(verbose_name="Password",validators= [passwordValidator()],max_length=50)
     full_name = models.CharField(verbose_name="Complete Name",max_length=250)
     profile_photo = models.ImageField(upload_to="users",verbose_name="Photo de profil",null=True)
     is_valid = models.BooleanField(default=True)
@@ -61,3 +61,5 @@ class User(AbstractBaseUser):
      
     def has_perm(self, perm, obj=None):
             return self.is_admin
+    
+ 
