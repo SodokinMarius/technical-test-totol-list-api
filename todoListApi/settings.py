@@ -109,7 +109,10 @@ REST_FRAMEWORK = {
     ),
      'DEFAULT_PERMISSION_CLASSES': [
        'rest_framework.permissions.IsAuthenticated',
-    ]
+    ],
+     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 15
+     
 }
 
 DJOSER = {
@@ -153,9 +156,9 @@ AUTH_USER_MODEL  = "authentication.User"
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'fr-fr'
+LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Porto-Novo'
 
 USE_I18N = True
 
