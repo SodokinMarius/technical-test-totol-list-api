@@ -16,8 +16,24 @@ import datetime
 from .enums import  ProgressChoiceEnum
 
 class TaskViewSet(viewsets.ModelViewSet):    
+    queryset = Task.objects.all()
     serializer_class = TaskSerializer
     permission_classes = [permissions.IsAuthenticated]
+    
+
+    
+    def get_queryset(self):
+       
+        if self.request.user.is_authenticated:
+    
+            queryset = Task.objects.filter(user=self.request.user)
+        else :
+            queryset = Task.objects.none()
+
+        if self.action == 'get_recent_tasks':
+             queryset = queryset.order_by("-created_at")[:20]
+
+        return queryset
     
     
      #return the permission depende by the action that the user want to perform
@@ -32,8 +48,13 @@ class TaskViewSet(viewsets.ModelViewSet):
   
   
     def perform_create(self, serializer):
-        if serializer.is_valid():     
-            serializer.save(user=self.request.user,isValid=True,progress_status=ProgressChoiceEnum.Pending.value)
+        if serializer.is_valid(): 
+            if self.request.user.is_authenticated:
+                user = self.request.user
+            else:
+                user = None
+    
+            serializer.save(user=user,isValid=True,progress_status=ProgressChoiceEnum.Pending.value)
             return Response(data=serializer.data,status=status.HTTP_202_ACCEPTED)
         return Response(data={'message':'Invalid provided data'},status=status.HTTP_400_BAD_REQUEST)
 
@@ -50,13 +71,6 @@ class TaskViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
     
-    def get_queryset(self):
-        queryset = Task.objects.filter(user=self.request.user)
-
-        if self.action == 'get_recent_tasks':
-             queryset = queryset.order_by("-created_at")[:20]
-
-        return queryset
     
    
     def perform_destroy(self, instance):
