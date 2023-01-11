@@ -57,5 +57,5 @@ python3 manage.py runserver
 ## 7. How to use the API
 ### Vue globale
 
-!global_vue (https://github.com/SodokinMarius/todo-list-api/blob/main/appercu%20global.png)
+![appercu global.png] (https://github.com/SodokinMarius/todo-list-api/blob/main/appercu%20global.png)
 
