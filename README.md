@@ -59,3 +59,6 @@ python3 manage.py runserver
 
 ![appercu global.png] (https://github.com/SodokinMarius/todo-list-api/blob/main/appercu%20global.png)
 
+### Connexion
+!connection.png https://github.com/SodokinMarius/todo-list-api/blob/main/connection.png
+
