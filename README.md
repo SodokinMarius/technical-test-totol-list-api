@@ -1,10 +1,10 @@
 ## How to run this project
 ### 1. Clone the project
  ```
- git clone git remote add origin https://github.com/SodokinMarius/technical-test-totol-list-api.git
+ git clone https://github.com/SodokinMarius/todo-list-api.git
 
  
- cd technical-test-totol-list-api
+ cd todo-list-api
  ```
 
 ### 2. Creating the  virtuel environnement 
@@ -45,8 +45,8 @@ python3 manage.py migrate
 
 ### 7. Running the project (with docker)
 ```
-sudo docker-compose exec restaurant python3 manage.py runserver or
-sudo docker-compose exec restaurant python manage.py runserver
+sudo docker-compose exec todo python3 manage.py runserver or
+sudo docker-compose exec todo python manage.py runserver
 
 
 ```
