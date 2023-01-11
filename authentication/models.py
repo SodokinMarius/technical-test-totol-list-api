@@ -17,7 +17,7 @@ class UserManager(BaseUserManager):
             raise ValueError("User must have an username")
         
         user = self.model(
-            username = self.normalize_username(username),
+            username = self.normalize_email(username),
             **extra_fields
         )
         user.set_password(password)
@@ -29,7 +29,7 @@ class UserManager(BaseUserManager):
             raise ValueError("User must have a username")
         
         user = self.create_user(
-            username= self.normalize_username(username),
+            username= self.normalize_email(username),
             password= password,
             **kwargs
         )
@@ -41,21 +41,19 @@ class UserManager(BaseUserManager):
         return user 
 
 class User(AbstractBaseUser,PermissionsMixin):
-    username = models.CharField(verbose_name="Username",max_length=250,validators=[usernameValidator()],unique=True)
+    username = models.CharField(verbose_name="Username",max_length=250,unique=True)
     full_name = models.CharField(verbose_name="Complete Name",max_length=250,null=True)
     profile_photo = models.ImageField(upload_to="users",verbose_name="Photo de profil",null=True)
-    is_valid = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_verified =  models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
     is_staff =   models.BooleanField(default=False)
-    is_superuser =  models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    objects = UserManager() 
     
     USERNAME_FIELD = 'username'
     
+    objects = UserManager() 
     
     def __str__(self) -> str:
          return  self.username

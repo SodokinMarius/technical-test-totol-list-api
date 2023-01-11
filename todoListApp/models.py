@@ -10,6 +10,7 @@ from .enums import ProgressChoiceEnum
 
 
 import datetime 
+from django.utils import timezone
 
 
 class Task(SafeDeleteModel):  
@@ -19,12 +20,12 @@ class Task(SafeDeleteModel):
     date_end = models.DateTimeField(null=False)
     progress_status = models.CharField(choices=ProgressChoiceEnum.items(),max_length=200,default="Pending")
     is_cancelled = models.BooleanField(default=False)
-    user = models.ForeignKey(to=settings.AUTH_USER_MODEL,on_delete=models.SET_NULL,null=True)
+    user = models.ForeignKey(to=settings.AUTH_USER_MODEL,on_delete=models.CASCADE,null=True,blank=True)
     created_at = models.DateTimeField(default=datetime.datetime.now)
 
     
     def save(self, *args, **kwargs):
-        current_time = datetime.datetime.now()
+        current_time = timezone.now()
         if self.is_cancelled:
             self.progress_status = ProgressChoiceEnum.Cancelled.value
         elif current_time > self.date_end:

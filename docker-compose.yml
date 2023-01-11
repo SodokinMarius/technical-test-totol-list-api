@@ -2,7 +2,7 @@ version: '3.3'
 services:
   todo:
     build: .   
-    command: python3 manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./:/usr/src/todoListApi/  #./scheminApp | : to manage  if  docker-compose is in other folder
     ports:
