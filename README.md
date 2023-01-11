@@ -55,12 +55,33 @@ sudo docker-compose exec todo python manage.py runserver
 python3 manage.py runserver
 ```
 ## 7. How to use the API
-### Vue globale
+### Global view
 
 ![Apperçu global de l'API] 
 (https://github.com/SodokinMarius/todo-list-api/blob/main/appercu%20global.png)
 
+### Inscription
+![Inscription de l'Utilisateur]
+(https://github.com/SodokinMarius/todo-list-api/blob/main/inscription.png)
+
 ### Connexion
 ![La page de connexion de l'Utilisateur à l'API] 
 (https://github.com/SodokinMarius/todo-list-api/blob/main/connection.png)
+
+### Copie the generated token for requests 
+![Token d'autorisation]
+(https://github.com/SodokinMarius/todo-list-api/blob/main/token.png)
+
+### Request autorization (by putting Token [copied token]
+![Autoriser l'API] 
+(https://github.com/SodokinMarius/todo-list-api/blob/main/autorisation.png)
+
+### Add a task 
+![POST a task] 
+(https://github.com/SodokinMarius/todo-list-api/blob/main/ajouter_task.png)
+
+### Task List
+![Tasks lists]
+(https://github.com/SodokinMarius/todo-list-api/blob/main/tesk_list.png)
+
 
