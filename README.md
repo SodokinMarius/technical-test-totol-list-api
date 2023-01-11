@@ -57,8 +57,10 @@ python3 manage.py runserver
 ## 7. How to use the API
 ### Vue globale
 
-![Apperçu global de l'API] (https://github.com/SodokinMarius/todo-list-api/blob/main/appercu%20global.png)
+![Apperçu global de l'API] 
+(https://github.com/SodokinMarius/todo-list-api/blob/main/appercu%20global.png)
 
 ### Connexion
-![La page de connexion de l'Utilisateur à l'API] (https://github.com/SodokinMarius/todo-list-api/blob/main/connection.png)
+![La page de connexion de l'Utilisateur à l'API] 
+(https://github.com/SodokinMarius/todo-list-api/blob/main/connection.png)
 
