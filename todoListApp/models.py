@@ -16,16 +16,17 @@ from django.utils import timezone
 class Task(SafeDeleteModel):  
     title = models.CharField(max_length=250,null=False)  
     description = models.TextField(max_length=500,null=True)
-    date_start = models.DateTimeField(default=datetime.datetime.now)
-    date_end = models.DateTimeField(null=False)
+    date_start = models.DateField(default=datetime.datetime.now)
+    date_end = models.DateField(null=False)
     progress_status = models.CharField(choices=ProgressChoiceEnum.items(),max_length=200,default="Pending")
+    file = models.FileField(null=True,upload_to="tasks_files")
     is_cancelled = models.BooleanField(default=False)
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL,on_delete=models.CASCADE,null=True,blank=True)
     created_at = models.DateTimeField(default=datetime.datetime.now)
 
     
     def save(self, *args, **kwargs):
-        current_time = timezone.now()
+        current_time = timezone.now().date()
         if self.is_cancelled:
             self.progress_status = ProgressChoiceEnum.Cancelled.value
         elif current_time > self.date_end:

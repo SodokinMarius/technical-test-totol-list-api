@@ -9,6 +9,7 @@ from .permissions import isOwnerOrReadOnly
 from .models import *
 from rest_framework import filters
 
+from rest_framework.parsers import MultiPartParser, FormParser, FileUploadParser
 
 from django.db.models.functions import Now
 
@@ -19,6 +20,8 @@ from .enums import  ProgressChoiceEnum
 class TaskViewSet(viewsets.ModelViewSet):    
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+    parser_classes = (MultiPartParser, FormParser, FileUploadParser)
+
     permission_classes = [permissions.IsAuthenticated]
   
     filter_backends = [filters.SearchFilter]
